@@ -3,23 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taller H/M - Video con Botón</title>
+  <title>Taller H/M - Video TikTok</title>
   <style>
-    body {
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
       background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
     }
     #container {
       text-align: center;
-    }
-    #video {
-      display: none; /* oculto hasta que presionen el botón */
-      margin-top: 20px;
     }
     button {
       background: #6a11cb;
@@ -34,37 +31,47 @@
     button:hover {
       background: #2575fc;
     }
+    #video {
+      display: none;
+      margin-top: 0;
+      width: 100%;
+      height: 100vh;
+    }
+    .tiktok-embed {
+      width: 100% !important;
+      height: 100vh !important;
+      max-width: none !important;
+    }
   </style>
 </head>
 <body>
   <div id="container">
     <button onclick="mostrarVideo()">▶ Toca aquí para ver el video</button>
-    
-    <!-- Aquí se mostrará el video -->
-    <div id="video">
-      <!-- Ejemplo: TikTok embebido -->
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@frases._.miguel/video/7555899108943219980" 
-        data-video-id="7555899108943219980" style="max-width: 605px;min-width: 325px;" >
-        
-      </blockquote>
-      <script async src="https://www.tiktok.com/embed.js"></script>
-
-      <!-- Ejemplo: YouTube -->
-      <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" 
-        frameborder="0" allowfullscreen></iframe> -->
-
-      <!-- Ejemplo: OneDrive (si tienes link público) -->
-      <!-- <video width="560" height="315" controls>
-        <source src="LINK_PUBLICO_ONEDRIVE" type="video/mp4">
-        Tu navegador no soporta video.
-      </video> -->
-    </div>
+    <div id="video"></div>
   </div>
 
   <script>
     function mostrarVideo() {
+      // Ocultar botón
       document.querySelector("button").style.display = "none";
-      document.getElementById("video").style.display = "block";
+
+      // Mostrar div del video
+      const videoDiv = document.getElementById("video");
+      videoDiv.style.display = "block";
+
+      // Crear bloque TikTok
+      const blockquote = document.createElement("blockquote");
+      blockquote.className = "tiktok-embed";
+      blockquote.setAttribute("cite", "https://www.tiktok.com/@frases._.miguel/video/7555899108943219980");
+      blockquote.setAttribute("data-video-id", "7555899108943219980");
+      blockquote.setAttribute("style", "width: 100%; height: 100vh;");
+      videoDiv.appendChild(blockquote);
+
+      // Agregar script de TikTok
+      const script = document.createElement("script");
+      script.src = "https://www.tiktok.com/embed.js";
+      script.async = true;
+      videoDiv.appendChild(script);
     }
   </script>
 </body>
