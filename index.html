@@ -78,13 +78,13 @@
 </head>
 <body>
 
-<button id="show-video">Ver Video</button>
+<button id="show-video">Presiona el botoooonn!!</button>
 
 <div id="video-container">
     <button id="close-btn">Cerrar</button>
-    <!-- iframe del video de Google Drive -->
+    <!-- iframe con autoplay -->
     <iframe id="my-video" 
-        src="https://drive.google.com/file/d/1MNjbdp75vdx7KoEZr9jejqFWFnCc7u8v/preview" 
+        src="https://drive.google.com/file/d/1MNjbdp75vdx7KoEZr9jejqFWFnCc7u8v/preview?autoplay=1" 
         allow="autoplay" 
         allowfullscreen>
     </iframe>
@@ -93,15 +93,16 @@
 <script>
 const showBtn = document.getElementById('show-video');
 const container = document.getElementById('video-container');
-const iframe = document.getElementById('my-video');
-const closeBtn = document.getElementById('close-btn');
 
 showBtn.addEventListener('click', () => {
     container.style.display = "flex";
 });
 
-closeBtn.addEventListener('click', () => {
+document.getElementById('close-btn').addEventListener('click', () => {
     container.style.display = "none";
+    // Reset del iframe para detener el video
+    const iframe = document.getElementById('my-video');
+    iframe.src = iframe.src; 
 });
 </script>
 
