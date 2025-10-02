@@ -3,39 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostrar TikTok al Clic</title>
+    <title>TikTok Pantalla Completa</title>
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
+
+        #show-tiktok {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
         #tiktok-container {
-            margin-top: 20px;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 1000;
         }
-        iframe {
-            width: 325px; /* ancho estándar del embed de TikTok */
-            height: 575px; /* alto estándar del embed de TikTok */
+
+        #tiktok-container iframe {
+            width: 100%;
+            height: 100%;
             border: none;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            background: red;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>Ver TikTok</h1>
-    <button id="show-tiktok">Mostrar Video</button>
-    <div id="tiktok-container"></div>
+    <button id="show-tiktok">Mostrar TikTok</button>
+
+    <div id="tiktok-container">
+        <button id="close-btn">Cerrar</button>
+        <iframe id="tiktok-frame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
 
     <script>
-        const button = document.getElementById('show-tiktok');
+        const showBtn = document.getElementById('show-tiktok');
         const container = document.getElementById('tiktok-container');
+        const iframe = document.getElementById('tiktok-frame');
+        const closeBtn = document.getElementById('close-btn');
 
-        button.addEventListener('click', () => {
-            container.innerHTML = `
-                <iframe src="https://www.tiktok.com/embed/7555899108943219980" 
-                        allow="autoplay; fullscreen" 
-                        allowfullscreen>
-                </iframe>
-            `;
+        showBtn.addEventListener('click', () => {
+            iframe.src = "https://www.tiktok.com/embed/7555899108943219980";
+            container.style.display = "block";
+        });
+
+        closeBtn.addEventListener('click', () => {
+            container.style.display = "none";
+            iframe.src = ""; // parar el video al cerrar
         });
     </script>
 </body>
