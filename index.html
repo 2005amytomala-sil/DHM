@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Pantalla Completa</title>
+<title>Video Pantalla Parcial</title>
 <style>
     body {
         margin: 0;
@@ -42,16 +42,19 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: black;
+        background: rgba(0,0,0,0.8); /* un poco transparente */
         z-index: 1000;
         justify-content: center;
         align-items: center;
     }
 
     #video-container video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* ocupa toda la pantalla */
+        width: 80%;  /* menos que toda la pantalla */
+        max-width: 900px;
+        height: auto;
+        border-radius: 12px;
+        object-fit: contain; /* mantiene proporción */
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     #close-btn {
@@ -78,12 +81,12 @@
 </head>
 <body>
 
-<button id="show-video">Presiona el botón</button>
+<button id="show-video">Presiona el botónn</button>
 
 <div id="video-container">
     <button id="close-btn">Cerrar</button>
-    <!-- Video real sin controles -->
-    <video id="my-video" autoplay muted></video>
+    <!-- Video real sin controles y con sonido -->
+    <video id="my-video" autoplay></video>
 </div>
 
 <script>
@@ -92,8 +95,8 @@ const container = document.getElementById('video-container');
 const video = document.getElementById('my-video');
 const closeBtn = document.getElementById('close-btn');
 
-// Aquí va un link directo a tu video .mp4 (Dropbox, servidor propio, etc.)
-const videoURL = "https://www.dropbox.com/scl/fi/lbqzpbgr94ztnj18glvtu/DHM.mp4?rlkey=755x4d4lj3ec755d3uuzgm0fi&st=qzrvx7sw&dl=1";
+// Link directo a tu video de Dropbox
+const videoURL = "https://www.dropbox.com/scl/fi/lbqzpbgr94ztnj18glvtu/DHM.mp4?rlkey=755x4d4lj3ec755d3uuzgm0fi&st=qzrvx7sw&raw=1";
 
 showBtn.addEventListener('click', () => {
     video.src = videoURL;
