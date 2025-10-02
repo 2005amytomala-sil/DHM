@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animación Interactiva</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+    }
+    .circulo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #6a11cb;
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    .circulo:hover {
+      transform: scale(1.2) rotate(15deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="circulo" onclick="cambiarColor()">
+    ¡Hola!
+  </div>
+
+  <script>
+    function cambiarColor() {
+      const colores = ["#ff6b6b", "#1dd1a1", "#feca57", "#5f27cd"];
+      const circulo = document.querySelector(".circulo");
+      const random = Math.floor(Math.random() * colores.length);
+      circulo.style.background = colores[random];
+      circulo.innerText = "🎉 ¡Click!";
+    }
+  </script>
+</body>
+</html>
