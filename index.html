@@ -48,10 +48,10 @@
         align-items: center;
     }
 
-    #video-container video {
+    #video-container iframe {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        border: none;
     }
 
     #close-btn {
@@ -82,28 +82,26 @@
 
 <div id="video-container">
     <button id="close-btn">Cerrar</button>
-    <video id="my-video" controls></video>
+    <!-- iframe del video de Google Drive -->
+    <iframe id="my-video" 
+        src="https://drive.google.com/file/d/1MNjbdp75vdx7KoEZr9jejqFWFnCc7u8v/preview" 
+        allow="autoplay" 
+        allowfullscreen>
+    </iframe>
 </div>
 
 <script>
 const showBtn = document.getElementById('show-video');
 const container = document.getElementById('video-container');
-const video = document.getElementById('my-video');
+const iframe = document.getElementById('my-video');
 const closeBtn = document.getElementById('close-btn');
 
-// Link directo de Google Drive
-const videoURL = "https://drive.google.com/file/d/1MNjbdp75vdx7KoEZr9jejqFWFnCc7u8v/view?usp=sharing";
-
 showBtn.addEventListener('click', () => {
-    video.src = videoURL;
     container.style.display = "flex";
-    video.play();
 });
 
 closeBtn.addEventListener('click', () => {
     container.style.display = "none";
-    video.pause();
-    video.src = "";
 });
 </script>
 
