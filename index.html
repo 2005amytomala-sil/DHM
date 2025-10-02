@@ -1,108 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video OneDrive Pantalla Completa</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #2c003e; /* morado oscuro */
-            color: white;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Google Drive Pantalla Completa</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #2c003e; /* morado oscuro */
+        color: white;
+    }
 
-        #show-video {
-            padding: 18px 40px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(45deg, #ff00ff, #8a2be2);
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
-            transition: all 0.3s ease;
-        }
+    #show-video {
+        padding: 18px 40px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        background: linear-gradient(45deg, #ff00ff, #8a2be2);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
+        transition: all 0.3s ease;
+    }
 
-        #show-video:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(255, 0, 255, 0.7);
-        }
+    #show-video:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(255, 0, 255, 0.7);
+    }
 
-        #video-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
+    #video-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
 
-        #video-container video {
-            max-width: 100%;
-            max-height: 100%;
-        }
+    #video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 
-        #close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1100;
-            background: #ff0055;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 18px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    #close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1100;
+        background: #ff0055;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 18px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
 
-        #close-btn:hover {
-            background: #ff3399;
-            transform: scale(1.05);
-        }
-    </style>
+    #close-btn:hover {
+        background: #ff3399;
+        transform: scale(1.05);
+    }
+</style>
 </head>
 <body>
-    <button id="show-video">Ver Video</button>
 
-    <div id="video-container">
-        <button id="close-btn">Cerrar</button>
-        <video id="my-video" controls></video>
-    </div>
+<button id="show-video">Ver Video</button>
 
-    <script>
-        const showBtn = document.getElementById('show-video');
-        const container = document.getElementById('video-container');
-        const video = document.getElementById('my-video');
-        const closeBtn = document.getElementById('close-btn');
+<div id="video-container">
+    <button id="close-btn">Cerrar</button>
+    <video id="my-video" controls></video>
+</div>
 
-        // Aquí va el link directo de OneDrive
-        const videoURL = "https://drive.google.com/file/d/1MNjbdp75vdx7KoEZr9jejqFWFnCc7u8v/view?usp=drive_link";
+<script>
+const showBtn = document.getElementById('show-video');
+const container = document.getElementById('video-container');
+const video = document.getElementById('my-video');
+const closeBtn = document.getElementById('close-btn');
 
-        showBtn.addEventListener('click', () => {
-            video.src = videoURL;
-            container.style.display = "flex";
-            video.play();
-        });
+// Link directo de Google Drive
+const videoURL = "https://drive.google.com/uc?export=download&id=1MNjbdp75vdx7KoEZr9jejqFWFnCc7u8v";
 
-        closeBtn.addEventListener('click', () => {
-            container.style.display = "none";
-            video.pause();
-            video.src = "";
-        });
-    </script>
+showBtn.addEventListener('click', () => {
+    video.src = videoURL;
+    container.style.display = "flex";
+    video.play();
+});
+
+closeBtn.addEventListener('click', () => {
+    container.style.display = "none";
+    video.pause();
+    video.src = "";
+});
+</script>
+
 </body>
 </html>
