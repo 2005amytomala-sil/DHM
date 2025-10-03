@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Pantalla Parcial</title>
+<title>Video y Modelo 3D</title>
 <style>
     body {
         margin: 0;
@@ -15,9 +15,10 @@
         height: 100vh;
         background-color: #2c003e;
         color: white;
+        gap: 20px;
     }
 
-    #show-video {
+    button {
         padding: 18px 40px;
         font-size: 20px;
         font-weight: bold;
@@ -30,30 +31,33 @@
         transition: all 0.3s ease;
     }
 
-    #show-video:hover {
+    button:hover {
         transform: scale(1.1);
         box-shadow: 0 6px 20px rgba(255, 0, 255, 0.7);
     }
 
-    #video-container {
+    /* Contenedor general (video o modelo) */
+    .overlay {
         display: none;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.8); /* un poco transparente */
+        background: rgba(0,0,0,0.9);
         z-index: 1000;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
 
-    #video-container video {
-        width: 80%;  /* menos que toda la pantalla */
+    .overlay video, 
+    .overlay iframe {
+        width: 80%;
         max-width: 900px;
-        height: auto;
+        height: 80%;
         border-radius: 12px;
-        object-fit: contain; /* mantiene proporción */
+        border: none;
         box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
@@ -81,33 +85,62 @@
 </head>
 <body>
 
-<button id="show-video">Presiona el botónn</button>
+<!-- Botones -->
+<button id="show-video">Mostrar Video</button>
+<button id="show-model">Mostrar Modelo 3D</button>
 
-<div id="video-container">
+<!-- Contenedor video -->
+<div id="video-container" class="overlay">
     <button id="close-btn">Cerrar</button>
-    <!-- Video real sin controles y con sonido -->
     <video id="my-video" autoplay></video>
 </div>
 
+<!-- Contenedor modelo -->
+<div id="model-container" class="overlay">
+    <button id="close-btn-model">Cerrar</button>
+    <!-- Aquí va el iframe de Sketchfab -->
+    <iframe id="my-model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
+</div>
+
 <script>
-const showBtn = document.getElementById('show-video');
-const container = document.getElementById('video-container');
+const videoBtn = document.getElementById('show-video');
+const modelBtn = document.getElementById('show-model');
+
+const videoContainer = document.getElementById('video-container');
+const modelContainer = document.getElementById('model-container');
+
 const video = document.getElementById('my-video');
-const closeBtn = document.getElementById('close-btn');
+const model = document.getElementById('my-model');
 
-// Link directo a tu video de Dropbox
-const videoURL = "https://www.dropbox.com/scl/fi/lbqzpbgr94ztnj18glvtu/DHM.mp4?rlkey=755x4d4lj3ec755d3uuzgm0fi&st=qzrvx7sw&raw=1";
+const closeBtnVideo = document.getElementById('close-btn');
+const closeBtnModel = document.getElementById('close-btn-model');
 
-showBtn.addEventListener('click', () => {
+// URL de tu video (Dropbox con ?dl=1 para descarga directa)
+const videoURL = "https://www.dropbox.com/scl/fi/3a2xcmux0xypg3omxd6hm/Video-de-WhatsApp-2025-10-02-a-las-18.55.14_29187f98.mp4?rlkey=bmsyltfajj27yohkxv6govvy9&st=3hmxrpi1&dl=1";
+
+// URL del modelo 3D de Sketchfab (cambia el XXXXX por el ID de tu modelo)
+const modelURL = "https://skfb.ly/pBGwp";
+
+videoBtn.addEventListener('click', () => {
     video.src = videoURL;
-    container.style.display = "flex";
+    videoContainer.style.display = "flex";
     video.play();
 });
 
-closeBtn.addEventListener('click', () => {
-    container.style.display = "none";
+closeBtnVideo.addEventListener('click', () => {
+    videoContainer.style.display = "none";
     video.pause();
     video.src = "";
+});
+
+modelBtn.addEventListener('click', () => {
+    model.src = modelURL;
+    modelContainer.style.display = "flex";
+});
+
+closeBtnModel.addEventListener('click', () => {
+    modelContainer.style.display = "none";
+    model.src = "";
 });
 </script>
 
