@@ -18,6 +18,17 @@
         gap: 20px;
     }
 
+    /* Título */
+    #page-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #ffffff;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    /* Botones */
     button {
         padding: 18px 40px;
         font-size: 20px;
@@ -51,17 +62,19 @@
         flex-direction: column;
     }
 
+    /* Video y modelo grandes */
     .overlay video, 
     .overlay iframe {
-        width: 90%;
+        width: 95%;
         height: 90vh;
-        height: 80%;
         border-radius: 12px;
         border: none;
+        object-fit: contain;
         box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
-    #close-btn {
+    /* Botón cerrar reutilizable */
+    .close-btn {
         position: absolute;
         top: 20px;
         right: 20px;
@@ -77,38 +90,31 @@
         transition: all 0.3s ease;
     }
 
-    #close-btn:hover {
+    .close-btn:hover {
         background: #ff3399;
         transform: scale(1.05);
     }
-    #page-title {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #ffffff;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-}
 </style>
 </head>
 <body>
- <!-- Título -->
-    <h1 id="page-title">Presione un botón</h1>
+
+<!-- Título -->
+<h1 id="page-title">Presione un botón</h1>
+
 <!-- Botones -->
-<>
 <button id="show-video">Video</button>
-<button id="show-model">Modelo 3D</button>
+<button id="show-model">3D</button>
 
 <!-- Contenedor video -->
 <div id="video-container" class="overlay">
-    <button id="close-btn">Cerrar</button>
-    <video id="my-video" autoplay></video>
+    <button id="close-btn" class="close-btn">Cerrar</button>
+    <video id="my-video" preload="auto" autoplay muted playsinline></video>
 </div>
 
 <!-- Contenedor modelo -->
 <div id="model-container" class="overlay">
-    <button id="close-btn-model">Cerrar</button>
-    <!-- Aquí va el iframe de Sketchfab -->
+    <button id="close-btn-model" class="close-btn">Cerrar</button>
+    <!-- Iframe del modelo 3D -->
     <iframe id="my-model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe>
 </div>
 
@@ -125,14 +131,16 @@ const model = document.getElementById('my-model');
 const closeBtnVideo = document.getElementById('close-btn');
 const closeBtnModel = document.getElementById('close-btn-model');
 
-// URL de tu video (Dropbox con ?dl=1 para descarga directa)
+// URL de tu video
 const videoURL = "https://www.dropbox.com/scl/fi/9102godbd5n9xwp50fm1u/DHM.mp4?rlkey=e1nn0zyrgb70bn3b8khhzoakg&st=j11niff3&dl=1";
 
-// URL del modelo 3D de Sketchfab (cambia el XXXXX por el ID de tu modelo)
+// URL del modelo 3D de Sketchfab
 const modelURL = "https://sketchfab.com/models/b52ab258868f4056b891faf672490f05/embed";
 
+// Precargar el video al inicio
+video.src = videoURL;
+
 videoBtn.addEventListener('click', () => {
-    video.src = videoURL;
     videoContainer.style.display = "flex";
     video.play();
 });
@@ -140,7 +148,6 @@ videoBtn.addEventListener('click', () => {
 closeBtnVideo.addEventListener('click', () => {
     videoContainer.style.display = "none";
     video.pause();
-    video.src = "";
 });
 
 modelBtn.addEventListener('click', () => {
