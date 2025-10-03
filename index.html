@@ -135,14 +135,15 @@ const closeBtnModel = document.getElementById('close-btn-model');
 const videoURL = "https://www.dropbox.com/scl/fi/9102godbd5n9xwp50fm1u/DHM.mp4?rlkey=e1nn0zyrgb70bn3b8khhzoakg&st=j11niff3&dl=1";
 
 // URL del modelo 3D de Sketchfab
-const modelURL = "https://sketchfab.com/models/b52ab258868f4056b891faf672490f05/embed";
+const modelURL = "https://sketchfab.com/models/b52ab258868f4056b891faf672490f05/embed?autostart=1&autospin=1&ui_infos=0&ui_controls=1";
 
 // Precargar el video al inicio
 video.src = videoURL;
 
 videoBtn.addEventListener('click', () => {
     videoContainer.style.display = "flex";
-    video.play();
+    video.muted = false;   // 🔊 Quita mute
+    video.play();          // Reproduce con audio
 });
 
 closeBtnVideo.addEventListener('click', () => {
