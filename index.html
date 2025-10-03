@@ -53,8 +53,8 @@
 
     .overlay video, 
     .overlay iframe {
-        width: 80%;
-        max-width: 900px;
+        width: 90%;
+        height: 90vh;
         height: 80%;
         border-radius: 12px;
         border: none;
@@ -81,13 +81,23 @@
         background: #ff3399;
         transform: scale(1.05);
     }
+    #page-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
 </style>
 </head>
 <body>
-
+ <!-- Título -->
+    <h1 id="page-title">Presione un botón</h1>
 <!-- Botones -->
-<button id="show-video">Mostrar Video</button>
-<button id="show-model">Mostrar Modelo 3D</button>
+<>
+<button id="show-video">Video</button>
+<button id="show-model">Modelo 3D</button>
 
 <!-- Contenedor video -->
 <div id="video-container" class="overlay">
@@ -116,10 +126,10 @@ const closeBtnVideo = document.getElementById('close-btn');
 const closeBtnModel = document.getElementById('close-btn-model');
 
 // URL de tu video (Dropbox con ?dl=1 para descarga directa)
-const videoURL = "https://www.dropbox.com/scl/fi/3a2xcmux0xypg3omxd6hm/Video-de-WhatsApp-2025-10-02-a-las-18.55.14_29187f98.mp4?rlkey=bmsyltfajj27yohkxv6govvy9&st=3hmxrpi1&dl=1";
+const videoURL = "https://www.dropbox.com/scl/fi/9102godbd5n9xwp50fm1u/DHM.mp4?rlkey=e1nn0zyrgb70bn3b8khhzoakg&st=j11niff3&dl=1";
 
 // URL del modelo 3D de Sketchfab (cambia el XXXXX por el ID de tu modelo)
-const modelURL = "https://skfb.ly/pBGwp";
+const modelURL = "https://sketchfab.com/models/b52ab258868f4056b891faf672490f05/embed";
 
 videoBtn.addEventListener('click', () => {
     video.src = videoURL;
